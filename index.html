@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>💖 Question for u 💖</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial;
+      background-color: #ffe6f0;
+      margin-top: 100px;
+    }
+    h1 {
+      color: #ff3399;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      margin: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+    }
+    .yes {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .no {
+      background-color: #f44336;
+      color: white;
+    }
+    #log {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #555;
+    }
+    img {
+      width: 250px;
+      margin-top: 20px;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<h1 id="question">wach katbghini? 💕</h1>
+
+<div id="buttons">
+  <button class="yes" onclick="firstYes()">ah</button>
+  <button class="no" onclick="firstNo()">la</button>
+</div>
+
+<div id="log"></div>
+
+<script>
+  let answers = [];
+
+  function updateLog() {
+    document.getElementById("log").innerHTML =
+      "Jawabat: " + answers.join(" ➜ ");
+  }
+
+  function firstYes() {
+    answers.push("ah (katbghini)");
+    updateLog();
+
+    document.body.innerHTML = `
+      <h1>ta ana Kanbghik a ziin dyali 💖🥰</h1>
+      <img src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+      <p>${answers.join(" ➜ ")}</p>
+    `;
+  }
+
+  function firstNo() {
+    answers.push("la (katbghini)");
+    updateLog();
+    askSure();
+  }
+
+  function askSure() {
+    document.getElementById("question").innerText = "wach mt2akda? 😏";
+    document.getElementById("buttons").innerHTML = `
+      <button class="yes" onclick="sureYes()">ah</button>
+      <button class="no" onclick="sureNo()">la</button>
+    `;
+  }
+
+  function sureYes() {
+    answers.push("ah (mt2akda)");
+    updateLog();
+    loopSure();
+  }
+
+  function sureNo() {
+    answers.push("la (mt2akda)");
+    updateLog();
+    resetQuestion();
+  }
+
+  function loopSure() {
+    document.getElementById("question").innerText = "wach mt2akda? 🤨";
+    document.getElementById("buttons").innerHTML = `
+      <button class="yes" onclick="loopSure()">ah</button>
+      <button class="no" onclick="resetQuestion()">la</button>
+    `;
+  }
+
+  function resetQuestion() {
+    document.getElementById("question").innerText = "wach katbghini? 💕";
+    document.getElementById("buttons").innerHTML = `
+      <button class="yes" onclick="firstYes()">ah</button>
+      <button class="no" onclick="firstNo()">la</button>
+    `;
+  }
+</script>
+
+</body>
+</html>
